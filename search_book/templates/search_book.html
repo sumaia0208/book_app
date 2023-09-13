@@ -1,0 +1,36 @@
+{% extends "main_content.html" %}
+{% block content %}
+    <div class="container">
+        <form class="container" method="GET">
+            {% csrf_token %}
+            <!-- Name input -->
+            <div class = "search">
+                <div class="form-outline mb-4">
+                    <input type="text" name="title" placeholder="Enter Book Title Here" class="form-control" />
+                </div>
+            </div>
+
+        </form>
+        <table>
+            {% if books %}
+                <table>
+                    <tr>
+                        <b><th>Book Name</th></b>
+                        <b><th>Author Name</th></b>
+                    </tr>
+                    {% for book in books %}
+                        <tr>
+                            <td>{{ book.title }}</td>
+                            <td>{{ book.author_name }}</td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            {% else %}
+                <li class="list-group-item d-flex justify-content-center align-items-center">
+                    You have no search book
+                </li>
+            {% endif %}
+        </table>
+        </ul>
+    </div>
+{% endblock %}
